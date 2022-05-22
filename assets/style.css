@@ -40,6 +40,10 @@ h1 {
   font-size: 1.5rem;
 }
 
+.balance-container #balance {
+    font-size: 3rem;
+}
+
 /* cash flow styling */
 .cashflow-container {
     display: flex;
@@ -61,7 +65,7 @@ h1 {
 }
 
 #income, #expense {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     padding-top: 1rem;
 }
 
