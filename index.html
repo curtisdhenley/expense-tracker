@@ -1,87 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expense Tracker</title>
     <!-- CSS links -->
-    <link rel="stylesheet" href="./assets/reset.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./assets/style.css">
-</head>
-<body>
+    <!-- <link rel="stylesheet" href="./assets/reset.css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="app">
-        <!-- header -->
-        <section class="header">
-            <header>
-                <h1>Expense Tracker</h1>
-            </header>
-        </section> 
-        <!-- balance section -->
-        <section class="balance-container">
-            <h2>Your Balance</h2>
-            <div id="balance">$1000</div>
-        </section>
-        <!-- cash flow section -->
-        <section class="cashFlow">
-            <!-- income -->
-            <div class="income-container">
-                <h2>Income</h2>
-                <div id="income">$1200</div>
+      <!-- header -->
+      <section class="header">
+        <header>
+          <h1>Expense Tracker</h1>
+        </header>
+      </section>
+      <!-- balance section -->
+      <section class="balance-container">
+        <h2>Your Balance</h2>
+        <div id="balance">$1000</div>
+      </section>
+      <!-- cash flow section -->
+      <section class="cashflow-container">
+        <!-- income -->
+        <div class="income-container">
+          <h2>Income</h2>
+          <div id="income">$1200</div>
+        </div>
+        <!-- expense -->
+        <div class="expense-container">
+          <h2>Expense</h2>
+          <div id="expense">$200</div>
+        </div>
+      </section>
+      <!-- transaction history -->
+      <section class="transaction-container">
+        <h2>Transaction History</h2>
+        <ul id="transaction">
+          <li>
+            Salary
+            <div>
+              <span class="income-amt">$5000</span>
+              <button id="trashBtn"><i class="fas fa-trash"></i></button>
             </div>
-            <!-- expense -->
-            <div class="expense-container">
-                <h2>Expense</h2>
-                <div id="expense">$200</div>
+          </li>
+          <li>
+            Buy Grocery
+            <div>
+              <span class="expense-amt">$50</span>
+              <button id="trashBtn"><i class="fas fa-trash"></i></button>
             </div>
-        </section>
-        <!-- transaction history -->
-        <section class="transaction-container">
-            <h2>Transaction History</h2>
-            <ul>
-                <li>
-                    Salary
-                    <div>
-                        <span class="income-amt">$5000</span>
-                        <button>X</button>
-                    </div>
-                </li>
-                <li>
-                    Buy Grocery
-                    <div>
-                        <span class="expense-amt">$50</span>
-                        <button>X</button>
-                    </div>
-                </li>
-                <li>
-                    Buy Guitar
-                    <div>
-                        <span class="expense-amt">$500</span>
-                        <button>X</button>
-                    </div>
-                </li>
-            </ul>
-        </section>
-        <!-- form input -->
-        <section class="form-container">
-            <h2>Add new transaction</h2>
-            <form>
-                <label for="name">Name</label>
-                <input type="text" id="name">
-                <label for="amount">Amount</label>
-                <input type="number" id="amount">
-                <button id="incomeBtn">Add Income</button>
-                <button id="expenseBtn">Add Expense</button>
-            </form>
-        </section>
+          </li>
+          <li>
+            Buy Guitar
+            <div>
+              <span class="expense-amt">$500</span>
+              <button id="trashBtn"><i class="fas fa-trash"></i></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <!-- form input -->
+      <section class="form-container">
+        <h2>Add new transaction</h2>
+        <form>
+          <label for="name">Name</label>
+          <input type="text" id="name" />
+          <label for="amount">Amount</label>
+          <input type="number" id="amount" />
+          <button id="incomeBtn">Add Income <i class="fa-solid fa-plus"></i><i class="fa-solid fa-dollar-sign"></i></button>
+          <button id="expenseBtn">Add Expense <i class="fa-solid fa-minus"></i><i class="fa-solid fa-dollar-sign"></i></button>
+        </form>
+      </section>
     </div>
-    
-
-
-
-
 
     <script src="./assets/app.js"></script>
-</body>
+  </body>
 </html>
