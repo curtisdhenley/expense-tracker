@@ -1,14 +1,11 @@
 // DOM cache
 const state = {
   balance: 0,
-  income: 1000,
-  expense: 550,
-  transaction: [
-    { name: "Salary", amount: 1000, type: "income" },
-    { name: "Buy Grocery", amount: 50, type: "expense" },
-    { name: "Buy Guitar", amount: 500, type: "expense" },
-  ],
+  income: 0,
+  expense: 0,
+  transaction: [],
 };
+
 const balanceAmt = document.getElementById("balance");
 const incomeAmt = document.getElementById("income");
 const expenseAmt = document.getElementById("expense");
@@ -30,6 +27,7 @@ function addTransactions(name, amount, type) {
   if (name !== "" && amount !== "") {
     // take in user input and store in a var
     let transactions = {
+      id: uniqId(),
       name: name,
       amount: parseInt(amount),
       type: type,
@@ -46,22 +44,37 @@ function addTransactions(name, amount, type) {
   nameInput.value = "";
   amountInput.value = "";
   nameInput.focus();
-};
-
-
+}
 
 function addIncomeClick() {
   addTransactions(nameInput.value, amountInput.value, "income");
-};
+}
 
 function addExpenseClick() {
   addTransactions(nameInput.value, amountInput.value, "expense");
-};
+}
+
+function onDeleteClick(event) {
+  let uniqId = parseInt(event.target.getAttribute("date-id"));
+  let deleteIndex;
+  for (let i = 0; i < state.transaction.length; i++) {
+    if (state.transaction[i].id === uniqId) {
+      deleteIndex = i;
+      break;
+    }
+  }
+  state.transaction.splice(deleteIndex, 1);
+  updateState();
+}
 
 function initTracker() {
   updateState();
   initEventListeners();
-};
+}
+
+function uniqId() {
+  return Math.round(Math.random() * 1000000);
+}
 
 function updateState() {
   // create balance, income, and expense and set to 0
@@ -75,7 +88,7 @@ function updateState() {
     // keep note of this incase of bug. If bug, replace else with else if statement that adds condition check for expense
     if (item.type === "income") {
       income += item.amount;
-    } else {
+    } else if (item.type === "expense") {
       expense += item.amount;
     }
   }
@@ -87,7 +100,7 @@ function updateState() {
   state.expense = expense;
   // send info to display
   transactionDisplay();
-};
+}
 
 function transactionDisplay() {
   // display initial balance, income, and expense
@@ -112,7 +125,7 @@ function transactionDisplay() {
     // keep note of this incase of bug. If bug, replace else with if else statement that adds condition check for expense
     if (item.type === "income") {
       transactionAmount.classList.add("income-amt");
-    } else {
+    } else if (item.type === "expense") {
       transactionAmount.classList.add("expense-amt");
     }
     // display amount
@@ -121,6 +134,7 @@ function transactionDisplay() {
     transactionDiv.appendChild(transactionAmount);
     // display btn
     btn = document.createElement("button");
+    btn.setAttribute("data-id", item.id);
     btn.innerHTML = `<i class="fas fa-trash"></i>`;
     // remove transaction item
     btn.addEventListener("click", onDeleteClick);
@@ -129,6 +143,6 @@ function transactionDisplay() {
     // add div to li
     transactionLi.appendChild(transactionDiv);
   }
-};
+}
 
 initTracker();
