@@ -13,14 +13,55 @@ const balanceAmt = document.getElementById("balance");
 const incomeAmt = document.getElementById("income");
 const expenseAmt = document.getElementById("expense");
 const transactionList = document.getElementById("transaction");
+const incomeBtn = document.getElementById("incomeBtn");
+const expenseBtn = document.getElementById("expenseBtn");
+const nameInput = document.getElementById("name");
+const amountInput = document.getElementById("amount");
 
 // Event listeners
+function initEventListeners() {
+  incomeBtn.addEventListener("click", addIncomeClick);
+  expenseBtn.addEventListener("click", addExpenseClick);
+}
 
 // Functions
+function addTransactions(name, amount, type) {
+  // pass info through a condition to confirm input is not blank
+  if (name !== "" && amount !== "") {
+    // take in user input and store in a var
+    let transactions = {
+      name: name,
+      amount: parseInt(amount),
+      type: type,
+    };
+    // post user input into state transactions array
+    state.transaction.push(transactions);
+    updateState();
+  } else {
+    alert(
+      "Please make sure you are entering a valid transaction name and amount"
+    );
+  }
+  // clear name and input value
+  nameInput.value = "";
+  amountInput.value = "";
+  nameInput.focus();
+};
+
+
+
+function addIncomeClick() {
+  addTransactions(nameInput.value, amountInput.value, "income");
+};
+
+function addExpenseClick() {
+  addTransactions(nameInput.value, amountInput.value, "expense");
+};
+
 function initTracker() {
   updateState();
-  transactionDisplay();
-}
+  initEventListeners();
+};
 
 function updateState() {
   // create balance, income, and expense and set to 0
@@ -44,6 +85,8 @@ function updateState() {
   state.balance = balance;
   state.income = income;
   state.expense = expense;
+  // send info to display
+  transactionDisplay();
 };
 
 function transactionDisplay() {
@@ -53,6 +96,8 @@ function transactionDisplay() {
   expenseAmt.innerHTML = `$${state.expense}`;
   // create li, create div, create span
   let transactionLi, transactionDiv, transactionAmount, item, btn;
+  // clear transaction before looping
+  transactionList.innerHTML = "";
   for (let i = 0; i < state.transaction.length; i++) {
     item = state.transaction[i];
     // li
@@ -77,11 +122,13 @@ function transactionDisplay() {
     // display btn
     btn = document.createElement("button");
     btn.innerHTML = `<i class="fas fa-trash"></i>`;
+    // remove transaction item
+    btn.addEventListener("click", onDeleteClick);
     // add btn to div
     transactionDiv.appendChild(btn);
     // add div to li
     transactionLi.appendChild(transactionDiv);
   }
-}
+};
 
 initTracker();

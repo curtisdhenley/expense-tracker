@@ -79,11 +79,11 @@
       <!-- form input -->
       <section class="form-container">
         <h2>Add new transaction</h2>
-        <form>
+        <form onsubmit="return false">
           <label for="name">Name</label>
-          <input type="text" id="name" />
+          <input type="text" id="name" required/>
           <label for="amount">Amount</label>
-          <input type="number" id="amount" />
+          <input type="number" id="amount" required/>
           <button id="incomeBtn">Add Income <i class="fa-solid fa-plus"></i><i class="fa-solid fa-dollar-sign"></i></button>
           <button id="expenseBtn">Add Expense <i class="fa-solid fa-minus"></i><i class="fa-solid fa-dollar-sign"></i></button>
         </form>
